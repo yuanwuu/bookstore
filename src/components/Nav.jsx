@@ -32,7 +32,9 @@ const Nav = () => {
             </div>
 
             <div id="logo" className=''>
-                <img src={logo} alt="logo" />
+                <Link to={'/'} className='cursor-pointer'>
+                    <img src={logo} alt="logo" />
+                </Link>
             </div>
             
             <div><Search /></div>
@@ -42,7 +44,9 @@ const Nav = () => {
         <div id='mobileNav' className='lg:hidden '>
             <div className='w-full flex justify-between items-end mb-4'>
                 <RxHamburgerMenu size={25} onClick={() =>setMobileView(!mobileView)}/>
-                <img src={logo} alt="" className='' />
+                <Link to={'/'} className='cursor-pointer'>
+                    <img src={logo} alt="logo" />
+                </Link>
                 <PiBag size={25} />
             </div>
 
@@ -61,7 +65,7 @@ const Nav = () => {
                 <ul>
                     {nav.map((item,idx)=>(
                         <Link to={item.link}>
-                            <li className='uppercase p-3 hover:shadow-sm rounded-lg w-[200px]' key={idx}>{item.name}</li>
+                            <li className='uppercase p-3 hover:shadow-sm rounded-lg w-[200px]' key={idx} onClick={() =>setMobileView(!mobileView)}>{item.name}</li>
                          </Link>
                     ))}
                 </ul>

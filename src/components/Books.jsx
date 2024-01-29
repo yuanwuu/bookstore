@@ -9,9 +9,9 @@ const Books = ({title}) => {
   useEffect(()=>{
     {
       axios
-      .get(`https://example-data.draftbit.com/books?_limit=50`)
+      .get(`https://example-data.draftbit.com/books?_limit=100`)
       .then((response)=>{
-       //  console.log(response.data)
+        // console.log(response.data)
         const randomBooks = []
         while (randomBooks.length < 4){
           const book = response.data[Math.floor(Math.random() * response.data.length)]
@@ -35,12 +35,14 @@ const Books = ({title}) => {
 
           {books.map((book,idx)=>(
              <div className="lg:flex flex-col justify-between items-stretch lg:w-1/4 h-[500px] lg:p-5">
-                <div>
-                  <img src={book.image_url} alt="" className=" w-[200px] h-[250px]" key={idx}/>
-                  <p>{book.title}</p>
-                  <p>{book.Quote1}</p>
-                  <p>$ {Math.ceil(Math.random()*20).toFixed(2)}</p>
-                </div>
+                <Link to={`/books/${book.title}`}>
+                  <div>
+                    <img src={book.image_url} alt="" className=" w-[200px] h-[250px]" key={idx}/>
+                    <p>{book.title}</p>
+                    <p>{book.Quote1}</p>
+                    <p>$ {Math.ceil(Math.random()*20).toFixed(2)}</p>
+                  </div>
+                </Link>
                   <button className="uppercase text-white bg-green-950 lg:w-full h-[50px] flex p-3">
                     <CiShoppingCart size={25} className="mr-2"/>
                     add to cart
